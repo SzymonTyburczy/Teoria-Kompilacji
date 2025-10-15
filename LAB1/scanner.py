@@ -3,8 +3,52 @@ from sly import Lexer
 
 
 class Scanner(Lexer):
+    tokens = {
+        'ID',
+    'INT',
+    'FLOAT',
+    'STRING',
 
-    pass
+    # Operatory binarne
+    'PLUS',
+    'MINUS',
+    'TIMES',
+    'DIVIDE',
+
+    # Operatory macierzowe element-po-elemencie
+    'DOTPLUS',
+    'DOTMINUS',
+    'DOTTIMES',
+    'DOTDIVIDE',
+
+    # Operatory przypisania
+    'ASSIGN',
+    'PLUSASSIGN',
+    'MINUSASSIGN',
+    'TIMESASSIGN',
+    'DIVIDEASSIGN',
+
+    # Operatory relacyjne
+    'LT',
+    'GT',
+    'LE',
+    'GE',
+    'NE',
+    'EQ',
+
+    # Nawiasy
+    'LPAREN',
+    'RPAREN',
+    'LBRACKET',
+    'RBRACKET',
+    'LBRACE',
+    'RBRACE',
+
+    # Inne operatory
+    'COLON',
+    'TRANSPOSE',
+    'COMMA',
+    'SEMICOLON'}
 
 
 if __name__ == '__main__':
