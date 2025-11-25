@@ -25,10 +25,7 @@ class Scanner(Lexer):
         ':', ',', ';', "'"
     }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> b32bcaf34bfe1616b47761b4ba5b5fb7819378d5
     LEQ = r'<='
     GEQ = r'>='
     NEQ = r'!='
@@ -44,10 +41,7 @@ class Scanner(Lexer):
     MULASSIGN = r'\*='
     DIVASSIGN = r'/='
 
-<<<<<<< HEAD
-=======
 
->>>>>>> b32bcaf34bfe1616b47761b4ba5b5fb7819378d5
     ID = r'[a-zA-Z_][a-zA-Z0-9_]*'
     ID['if'] = IF
     ID['else'] = ELSE
@@ -61,12 +55,6 @@ class Scanner(Lexer):
     ID['ones'] = ONES
     ID['print'] = PRINT
 
-<<<<<<< HEAD
-    STRING = r'"([^"\\]|\\.)*"'
-
-
-    @_(r'((\d+\.\d*|\.\d+)([eE][-+]?\d+)?|\d+[eE][-+]?\d+)')
-=======
     @_(r'"([^"\\]|\\.)*"')
     def STRING(self, t):
         newline_count = t.value.count('\n')
@@ -74,21 +62,15 @@ class Scanner(Lexer):
         return t
 
     @_(r'(\d+\.\d*|\.\d+)([eE][-+]?\d+)?|\d+[eE][-+]?\d+')
->>>>>>> b32bcaf34bfe1616b47761b4ba5b5fb7819378d5
     def FLOATNUM(self, t):
         t.value = float(t.value)  # Konwersja na float
         return t
 
     @_(r'\d+')
     def INTNUM(self, t):
-        t.value = int(t.value)
+        t.value = int(t.value)  # Konwersja na int
         return t
-<<<<<<< HEAD
-
-
-=======
 #poprawa tego zeby poprawnie wyswietlal
->>>>>>> b32bcaf34bfe1616b47761b4ba5b5fb7819378d5
     @_(r'\n+')
     def ignore_newline(self, t):
         self.lineno += len(t.value)
@@ -102,10 +84,7 @@ class Scanner(Lexer):
 if __name__ == '__main__':
 
     lexer = Scanner()
-<<<<<<< HEAD
-=======
     data = 'x = 3 + 42 * (s - t)'
->>>>>>> b32bcaf34bfe1616b47761b4ba5b5fb7819378d5
     filename = sys.argv[1] if len(sys.argv) > 1 else "example.txt"
     with open(filename, "r") as file:
         text = file.read()
