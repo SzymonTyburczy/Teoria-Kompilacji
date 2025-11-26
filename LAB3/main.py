@@ -1,16 +1,36 @@
-# This is a sample Python script.
-
-# Press Ctrl+F5 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press F9 to toggle the breakpoint.
+import sys
+from Scanner import Scanner
+from Parser import MParser
+import TreePrinter  # Import to add printTree methods to AST classes
 
 
-# Press the green button in the gutter to run the script.
+def main():
+    if len(sys.argv) < 2:
+        print("Usage: python main.py <input_file>")
+        sys.exit(1)
+
+    filename = sys.argv[1]
+
+    try:
+        with open(filename, 'r') as f:
+            text = f.read()
+    except FileNotFoundError:
+        print(f"Error: File '{filename}' not found")
+        sys.exit(1)
+
+    lexer = Scanner()
+    parser = MParser()
+
+    try:
+        ast = parser.parse(lexer.tokenize(text))
+        if ast is not None:
+            ast.printTree()
+    except Exception as e:
+        print(f"Error during parsing: {e}")
+        import traceback
+        traceback.print_exc()
+        sys.exit(1)
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    main()
